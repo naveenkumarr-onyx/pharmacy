@@ -23,17 +23,31 @@ const Navbar = () => {
           <h1 className="Nav-Logo">Krafene</h1>
         </div>
         <div className="Nav-Left2">
-          <Navs
-            title="orders"
-            href="/orders"
-            active={activePages === "orders"}
-          />
-          <Navs
-            title="Products"
-            href="/products"
-            active={activePages === "products"}
-          />
-          <Navs title="Users" href="/users" active={activePages === "users"} />
+          {pathname.startsWith("/login") ? (
+            <>
+              <Navs title="orders" href="/login" />
+              <Navs title="Products" href="/login" />
+              <Navs title="Users" href="/login" />
+            </>
+          ) : (
+            <>
+              <Navs
+                title="orders"
+                href="/orders"
+                active={activePages === "orders"}
+              />
+              <Navs
+                title="Products"
+                href="/products"
+                active={activePages === "products"}
+              />
+              <Navs
+                title="Users"
+                href="/users"
+                active={activePages === "users"}
+              />
+            </>
+          )}
         </div>
       </div>
       {pathname.startsWith("/login") ? (

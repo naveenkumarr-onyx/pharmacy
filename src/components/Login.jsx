@@ -1,10 +1,22 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
-    username: "",
-    password: "",
+    username: "qaifi",
+    password: "qaifi",
   });
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    if (user.username === "qaifi" && user.password === "qaifi") {
+      alert("Login successful");
+      navigate("/orders");
+    } else {
+      alert("Invalid username or password");
+    }
+  };
+
   return (
     <div
       style={{
@@ -43,7 +55,7 @@ const Login = () => {
           value={user.username}
           onChange={(e) =>
             setUser({
-              user,
+              ...user,
               username: e.target.value,
             })
           }
@@ -64,7 +76,7 @@ const Login = () => {
           placeholder="Enter Password"
           onChange={(e) =>
             setUser({
-              user,
+              ...user,
               password: e.target.value,
             })
           }
@@ -82,7 +94,9 @@ const Login = () => {
             border: "none",
             backgroundColor: "#20b983",
             color: "#fff",
+            cursor: "pointer",
           }}
+          onClick={handleSubmit}
         >
           Log In
         </button>
