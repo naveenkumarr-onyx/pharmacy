@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [user, setUser] = useState({
-    username: "qaifi",
-    password: "qaifi",
+    username: "",
+    password: "",
   });
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (user.username === "qaifi" && user.password === "qaifi") {
+      // Set a flag in local storage indicating successful login
+      localStorage.setItem("isLoggedIn", "true");
       alert("Login successful");
       navigate("/orders");
     } else {

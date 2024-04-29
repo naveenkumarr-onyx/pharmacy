@@ -1,10 +1,11 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import Navs from "../typography/Navs";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   let activePages = "";
   if (pathname.startsWith("/orders")) {
     activePages = "orders";
@@ -13,6 +14,10 @@ const Navbar = () => {
   } else if (pathname.startsWith("/users")) {
     activePages = "users";
   }
+  const handleLogOut = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
   return (
     <div className="Nav-Container">
       <div className="Nav-Left">
@@ -51,9 +56,9 @@ const Navbar = () => {
         </div>
       </div>
       {pathname.startsWith("/login") ? (
-        ""
+        <></>
       ) : (
-        <Navs title="Logout" href="/login" />
+        <Navs title="Logout" href="/login" onClick={handleLogOut} />
       )}
     </div>
   );
