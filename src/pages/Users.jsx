@@ -16,7 +16,7 @@ const Users = () => {
       }
     };
     fetchData();
-  }, []);
+  });
   return (
     <div className="users-main-container">
       <div className="users-sub-container">
@@ -38,9 +38,6 @@ const Users = () => {
             wrapperClass=""
           />
         ) : (
-          ""
-        )}
-        {data && (
           <table className="users-table">
             <thead>
               <tr className="Table-Heading">

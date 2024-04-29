@@ -22,6 +22,7 @@ const Orders = () => {
           const filterValue = ordersFilter[selectedFilter].filter;
           url += `?orderStatus=${filterValue}`;
         }
+
         const response = await axios.get(url);
         setData(response.data);
         setError(null);
@@ -39,6 +40,26 @@ const Orders = () => {
     setSelectedFilter(index);
   }
 
+  function handleAllFilters() {
+    const allChecked = ordersFilter.every((value, index) => {
+      return document.getElementById(`checkbox-${index}`).checked;
+    });
+
+    if (allChecked) {
+      setSelectedFilter(null);
+    }
+  }
+
+  function getFilteredCount() {
+    if (!data) return 0;
+    if (selectedFilter === null) return data.length;
+
+    const filterValue = ordersFilter[selectedFilter].filter;
+    return data.filter((order) => order.orderStatus === filterValue).length;
+  }
+
+  const filteredCount = getFilteredCount();
+
   return (
     <div className="Orders-Main-Container">
       <div className="Orders-Container">
@@ -47,12 +68,16 @@ const Orders = () => {
           <div className="Orders-Container-Left1">
             <div className="Orders-left-filter">
               <Filters />
-              <h4>count:</h4>
+              <h4>Count: {filteredCount}</h4>
             </div>
             <div className="Orders-Checkbox-Div">
               {ordersFilter.map((value, index) => (
                 <div key={index} onClick={() => handleCheck(index)}>
-                  <CheckBox title={value.filter} />
+                  <CheckBox
+                    title={value.filter}
+                    id={`checkbox-${index}`}
+                    onChange={handleAllFilters}
+                  />
                 </div>
               ))}
             </div>
