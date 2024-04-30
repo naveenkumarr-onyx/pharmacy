@@ -55,11 +55,13 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {pathname.startsWith("/login") ? (
-        <></>
-      ) : (
-        <Navs title="Logout" href="/login" onClick={handleLogOut} />
-      )}
+      <div className="s">
+        {pathname.startsWith("/login") ? (
+          <></>
+        ) : (
+          <Navs title="Logout" href="/login" onClick={handleLogOut} />
+        )}
+      </div>
     </div>
   );
 };

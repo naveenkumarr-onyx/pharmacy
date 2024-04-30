@@ -20,8 +20,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        {/* <Route path="/login" element={<Login />} /> */}
-        {/* <Route path="/orders" element={renderProtectedRoute(Orders)} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/orders" element={renderProtectedRoute(Orders)} />
         <Route path="/" element={renderProtectedRoute(Login)} />
         <Route path="/products" element={renderProtectedRoute(Products)} />
         <Route path="/users" element={renderProtectedRoute(Users)} /> */}
